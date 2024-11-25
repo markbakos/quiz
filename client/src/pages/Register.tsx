@@ -1,5 +1,6 @@
 import React, {FC, useState} from "react";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 const Register:FC = () => {
 
@@ -15,11 +16,23 @@ const Register:FC = () => {
             return
         }
 
-        try{
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/register', {
+                username,
+                password
+            });
 
-        }
-        catch (e) {
+            setUsername('')
+            setPassword('')
+            setConfirmPassword('')
 
+            console.log('Response:', response.data);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error("Error:", error.response?.data || error.message);
+            } else {
+                console.error("Error:", error);
+            }
         }
     }
     

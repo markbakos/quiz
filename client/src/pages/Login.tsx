@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
+import axios from "axios";
 
 const Login = () => {
 
@@ -8,6 +9,21 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/login', {
+                username,
+                password
+            });
+
+            console.log('Response:', response.data);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error("Error:", error.response?.data || error.message);
+            } else {
+                console.error("Error:", error);
+            }
+        }
     }
     
     return (
