@@ -14,11 +14,11 @@ const Quiz: React.FC = ()=> {
     const [userName, setUserName] = useState<string>("User")
 
     useEffect(() => {
-        const storedUserName = localStorage.getItem('username');
+        const storedUserName = localStorage.getItem('username')
         if (storedUserName) {
-            setUserName(storedUserName);
+            setUserName(storedUserName)
         }
-    }, []);
+    }, [])
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-purple-400 to-indigo-600 text-white">
