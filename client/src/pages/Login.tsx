@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import axios from "axios";
 
@@ -6,6 +6,10 @@ const Login = () => {
 
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [message, setMessage] = useState<string>('')
+
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -16,12 +20,28 @@ const Login = () => {
                 password
             });
 
-            console.log('Response:', response.data);
+            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('username', username)
+
+            setMessage('Logged in successfully!')
+
+           setTimeout(() => navigate('/quiz'), 3000)
+
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                console.error("Error:", error.response?.data || error.message);
-            } else {
-                console.error("Error:", error);
+                console.error("Error:", error.response?.data || error.message)
+                setMessage(error.response?.data.message)
+                setPassword('')
+            }
+            else if(error instanceof Error) {
+                console.error("Error:", error)
+                setPassword('')
+                setMessage(error.message)
+            }
+            else{
+                console.error("Error:", error)
+                setPassword('')
+                setMessage('Something went wrong')
             }
         }
     }
@@ -80,7 +100,9 @@ const Login = () => {
                                 Login
                             </button>
                         </div>
+                        {message && <p className="text-gray-900 z-20 text-center font-medium text-lg">{message}</p>}
                     </form>
+
 
                     <div className="mt-2">
                         <div className="relative">
