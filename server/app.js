@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
+const scoreRoutes = require('./routes/scoreRoutes');
 const cors = require('cors');
 
 dotenv.config();
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO_URI, {
     .catch(err => console.error('MongoDB connection error:', err));
 
 app.use('/api/auth', authRoutes);
+app.use('/api', scoreRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
