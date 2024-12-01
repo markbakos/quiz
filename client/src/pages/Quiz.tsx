@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card.tsx"
+import { Button } from "@/components/ui/button.tsx"
+import { Progress } from "@/components/ui/progress.tsx"
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import Leaderboard from "@/pages/Leaderboard.tsx";

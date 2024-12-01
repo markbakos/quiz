@@ -39,7 +39,6 @@ router.post('/quizzes', async (req, res) => {
 
 router.post('/scores', async (req, res) => {
     try {
-        console.log('Received score data:', req.body);
         const { username, quizID, score, quizType } = req.body;
 
         const updatedScore = await Score.findOneAndUpdate(
