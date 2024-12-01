@@ -33,12 +33,19 @@ const QuizHome: React.FC = ()=> {
         fetchQuizzes()
     }, [])
 
-
+    const handleLogOut = () => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('username')
+        window.location.href = '/login'
+    }
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-purple-400 to-indigo-600 text-white">
-            <header className="py-6 px-4 md:px-8">
+            <header className="py-6 px-4 md:px-8 flex flex-col items-center">
                 <h1 className="text-3xl md:text-4xl font-bold text-center">Welcome, {userName}!</h1>
+                <Button className="w-36 bg-transparent border-2 border-red-500 hover:bg-red-600 text-center text-xl mt-3" onClick={handleLogOut}>
+                    Log Out
+                </Button>
             </header>
             <main className="container mx-auto px-4 md:px-8 py-8">
                 <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center">Choose a Quiz Category</h2>

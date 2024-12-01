@@ -56,4 +56,19 @@ router.post('/scores', async (req, res) => {
     }
 })
 
+router.get('/leaderboard/:quizID', async(req, res) => {
+    try {
+        const { quizID } = req.params;
+        const leaderboard = await Score.find({quizID})
+            .sort({score: -1, date: -1})
+            .limit(10)
+            .select('username score date -_id');
+
+        res.json(leaderboard);
+    } catch (e) {
+        console.error('Error fetching leaderboard', e);
+        res.status(500).json({message: 'Error fetching leaderboard', error: e});
+    }
+})
+
 module.exports = router;
