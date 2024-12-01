@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
-
+import {Button} from "@/components/ui/button.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface LeaderboardEntry {
     username: string
@@ -17,6 +18,7 @@ interface LeaderboardProps {
 
 const Leaderboard: React.FC<LeaderboardProps> = ({quizID, quizTitle}) => {
     const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchLeaderboard = async () => {
@@ -30,6 +32,10 @@ const Leaderboard: React.FC<LeaderboardProps> = ({quizID, quizTitle}) => {
 
         fetchLeaderboard()
     }, [quizID]);
+
+    const goToHome = () => {
+        navigate('/quiz')
+    }
 
     return(
         <Card className="w-full max-w-2xl bg-white/10 backdrop-blur-md text-white">
@@ -57,6 +63,11 @@ const Leaderboard: React.FC<LeaderboardProps> = ({quizID, quizTitle}) => {
                         ))}
                     </TableBody>
                 </Table>
+                <div className="flex justify-center">
+                    <Button onClick={goToHome} className="bg-green-500 hover:bg-green-600 w-64 mt-4">
+                        Go to Home
+                    </Button>
+                </div>
             </CardContent>
         </Card>
     )
