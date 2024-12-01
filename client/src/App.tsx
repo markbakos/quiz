@@ -4,8 +4,8 @@ import Home from './pages/Home.tsx'
 import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
 import ProtectedRoute from "./pages/ProtectedRoute.tsx";
-import Quiz from "./pages/Quiz.tsx";
-import ProgrammingQuiz from "./pages/quiz/ProgrammingQuiz.tsx";
+import QuizHome from "./pages/QuizHome.tsx";
+import Quiz from "./pages/quiz/Quiz.tsx";
 
 function App() {
   return (
@@ -16,13 +16,13 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/quiz" element={
               <ProtectedRoute>
-                  <Quiz />
+                  <QuizHome />
               </ProtectedRoute>
 
               } />
-            <Route path="/quiz/programming" element={
+            <Route path="/quiz/:id" element={
                 <ProtectedRoute>
-                    <ProgrammingQuiz />
+                    <Quiz />
                 </ProtectedRoute>
             } />
         </Routes>
