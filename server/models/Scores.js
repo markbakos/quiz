@@ -24,4 +24,6 @@ const ScoreSchema = new mongoose.Schema({
     }
 });
 
+ScoreSchema.index({ username: 1, quizID: 1 }, { unique: true });
+
 module.exports = mongoose.model('Score', ScoreSchema, 'scores');

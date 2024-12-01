@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 interface Question {
     question: string
@@ -26,6 +26,7 @@ const Quiz: React.FC = () => {
     const [showScore, setShowScore] = useState<boolean>(false)
     const [userName, setUserName] = useState<string>("User")
     const { id } = useParams<{id : string}>()
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -46,9 +47,11 @@ const Quiz: React.FC = () => {
         fetchQuiz()
     }, [id])
 
-    const handleAnswerClick = (selectedAnswer: string) => {
+    const handleAnswerClick = async (selectedAnswer: string) => {
+        let newScore = score
         if (quizData && selectedAnswer === quizData.questions[currentQuestion].correctAnswer) {
-            setScore(score + 1)
+            newScore = score + 1
+            setScore(newScore)
         }
 
         const nextQuestion = currentQuestion + 1
@@ -56,17 +59,17 @@ const Quiz: React.FC = () => {
             setCurrentQuestion(nextQuestion)
         } else {
             setShowScore(true)
-            saveScore()
+            await saveScore(newScore)
         }
     }
 
-    const saveScore = async () => {
+    const saveScore = async (finalScore: number) => {
         if(quizData) {
             try {
                 await axios.post('http://localhost:5000/api/scores', {
                     username: userName,
                     quizID: quizData._id,
-                    score: score,
+                    score: finalScore,
                     quizType: quizData.title
                 })
             }
@@ -85,8 +88,14 @@ const Quiz: React.FC = () => {
     if(!quizData) {
         return <div>Loading...</div>
     }
+
+    const goToHome = () => {
+        navigate('/quiz')
+    }
+
     return (
-        <div className="min-h-screen bg-gradient-to-b from-purple-400 to-indigo-600 flex flex-col items-center justify-center p-4">
+        <div
+            className="min-h-screen bg-gradient-to-b from-purple-400 to-indigo-600 flex flex-col items-center justify-center p-4">
             <Card className="w-full max-w-2xl bg-white/10 backdrop-blur-md text-white">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center">{quizData.title}</CardTitle>
@@ -101,6 +110,9 @@ const Quiz: React.FC = () => {
                                 <Button onClick={restartQuiz} className="bg-purple-500 hover:bg-purple-600 w-full">
                                     Restart Quiz
                                 </Button>
+                                <Button onClick={goToHome} className="bg-indigo-500 hover:bg-indigo-600 w-full">
+                                    Go to Home
+                                </Button>
                             </div>
                         </div>
                     ) : (
@@ -110,7 +122,7 @@ const Quiz: React.FC = () => {
                                     <span>Question {currentQuestion + 1} of {quizData.questions.length}</span>
                                     <span>{score}/{quizData.questions.length} ({Math.round((score / quizData.questions.length) * 100)}%)</span>
                                 </div>
-                                <Progress value={(currentQuestion / quizData.questions.length) * 100} className="h-2" />
+                                <Progress value={(currentQuestion / quizData.questions.length) * 100} className="h-2"/>
                             </div>
                             <h2 className="text-xl font-semibold mb-4">{quizData.questions[currentQuestion].question}</h2>
                             <div className="space-y-3">

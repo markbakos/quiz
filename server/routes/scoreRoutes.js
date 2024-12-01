@@ -38,11 +38,18 @@ router.post('/quizzes', async (req, res) => {
 })
 
 router.post('/scores', async (req, res) => {
-    try{
+    try {
+        console.log('Received score data:', req.body);
         const { username, quizID, score, quizType } = req.body;
-        const newScore = new Score({ username, quizID, score, quizType });
-        await newScore.save();
-        res.status(201).json(newScore);
+
+        const updatedScore = await Score.findOneAndUpdate(
+            { username, quizID },
+            { score, quizType, date: new Date() },
+            { new: true, upsert: true, runValidators: true }
+        );
+
+        console.log('Score updated successfully:', updatedScore);
+        res.status(200).json(updatedScore);
     }
     catch (e) {
         res.status(500).json({message: 'Error saving score', e});
