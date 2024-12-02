@@ -47,7 +47,8 @@ const QuizHome: React.FC = ()=> {
                 <h1 className="text-3xl md:text-4xl font-bold text-center">Welcome, {userName}!</h1>
             </header>
             <main className="container mx-auto px-4 md:px-8 py-8">
-                <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center">Choose a Quiz Category</h2>
+                <h2 className="text-2xl md:text-3xl font-semibold text-center">Choose a Quiz Category</h2>
+                <p className="text-lg md:text-xl mb-6 text-center text-gray-200">These questions are made by the community!</p>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {quizzes.map((quiz) => (
                         <Card key={quiz._id} className="bg-white/10 backdrop-blur-md border-none">

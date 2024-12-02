@@ -46,8 +46,6 @@ router.post('/scores', async (req, res) => {
             { score, quizType, date: new Date() },
             { new: true, upsert: true, runValidators: true }
         );
-
-        console.log('Score updated successfully:', updatedScore);
         res.status(200).json(updatedScore);
     }
     catch (e) {
