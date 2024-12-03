@@ -23,7 +23,7 @@ const QuizHome: React.FC = ()=> {
 
         const fetchQuizzes = async () => {
             try {
-                const response  = await axios.get('http://localhost:5000/api/quizzes')
+                const response  = await axios.get('https://quizapp-backend-d24y.onrender.com/api/quizzes')
                 setQuizzes(response.data)
             }
             catch (e) {
@@ -48,7 +48,7 @@ const QuizHome: React.FC = ()=> {
             </header>
             <main className="container mx-auto px-4 md:px-8 py-8">
                 <h2 className="text-2xl md:text-3xl font-semibold text-center">Choose a Quiz Category</h2>
-                <p className="text-lg md:text-xl mb-6 text-center text-gray-200">These questions are made by the community!</p>
+                <p className="text-lg md:text-xl mb-6 text-center text-gray-300">These questions are made by the community!</p>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {quizzes.map((quiz) => (
                         <Card key={quiz._id} className="bg-white/10 backdrop-blur-md border-none">

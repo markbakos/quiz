@@ -39,7 +39,7 @@ const Quiz: React.FC = () => {
 
         const fetchQuiz = async () => {
             try{
-                const response = await axios.get(`http://localhost:5000/api/quizzes/${id}`)
+                const response = await axios.get(`https://quizapp-backend-d24y.onrender.com/api/quizzes/${id}`)
                 setQuizData(response.data)
             } catch (e) {
                 console.error('Error fetching quiz', e)
@@ -68,7 +68,7 @@ const Quiz: React.FC = () => {
     const saveScore = async (finalScore: number) => {
         if(quizData) {
             try {
-                await axios.post('http://localhost:5000/api/scores', {
+                await axios.post('https://quizapp-backend-d24y.onrender.com/api/scores', {
                     username: userName,
                     quizID: quizData._id,
                     score: finalScore,

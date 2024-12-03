@@ -23,7 +23,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({quizID, quizTitle}) => {
     useEffect(() => {
         const fetchLeaderboard = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/leaderboard/${quizID}`)
+                const response = await axios.get(`https://quizapp-backend-d24y.onrender.com/api/leaderboard/${quizID}`)
                 setLeaderboard(response.data)
             } catch (e) {
                 console.error('Error fetching leaderboard', e)

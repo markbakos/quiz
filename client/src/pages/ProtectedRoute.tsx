@@ -19,7 +19,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({children}) => {
             }
 
             try{
-                const response = await axios.get('http://localhost:5000/api/auth/verify', {
+                const response = await axios.get('https://quizapp-backend-d24y.onrender.com/api/auth/verify', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
