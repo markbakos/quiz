@@ -18,7 +18,7 @@ const Login = () => {
             const response = await axios.post('https://quizapp-backend-d24y.onrender.com/api/auth/login', {
                 username,
                 password
-            });
+            })
 
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('username', username)
@@ -53,6 +53,7 @@ const Login = () => {
                 <h2 className="mt-6 text-center text-3xl font-extrabold">
                     Log in to your account
                 </h2>
+                <p className="mt-2 text-center text-sm text-gray-400">Please wait when logging in for the first time, the backend is ran on a free server.</p>
             </div>
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
