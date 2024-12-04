@@ -38,7 +38,7 @@ const Navbar:React.FC<NavbarProps> = ({username, onLogout}) => {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem onSelect={() => navigate('/profile')}>
+                            <DropdownMenuItem onSelect={() => navigate(`/profile/${username}`)}>
                                 Profile
                             </DropdownMenuItem>
                             <DropdownMenuItem className="hover:bg-red-600 hover:text-white" onSelect={handleLogout}>

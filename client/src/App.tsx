@@ -36,6 +36,11 @@ function App() {
                     <CreateQuiz />
                 </ProtectedRoute>
             } />
+            <Route path="/profile/:username" element={
+                <ProtectedRoute>
+                    <Profile />
+                </ProtectedRoute>
+            } />
         </Routes>
       </Router>
   )
