@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress.tsx"
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import Leaderboard from "@/pages/Leaderboard.tsx";
+import Loading from "@/pages/Loading.tsx";
 
 interface Question {
     question: string
@@ -92,7 +93,7 @@ const Quiz: React.FC = () => {
     }
 
     if(!quizData) {
-        return <div>Loading...</div>
+        return <Loading message="Loading Quiz..." />
     }
 
     const goToHome = () => {

@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom"
 import axios from "axios"
 import {ReactNode, useEffect, useState} from 'react'
+import Loading from "@/pages/Loading.tsx";
 
 type ProtectedRouteProps = {
     children: ReactNode
@@ -38,7 +39,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({children}) => {
     if(isAuthenticated===undefined){
         return(
             <>
-                <h1>Loading...</h1>
+                <Loading message="Checking Authentication" />
             </>
         )
     }
