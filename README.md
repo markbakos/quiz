@@ -1,11 +1,11 @@
 # Interactive Quiz Application
 
-## 🚀 Overview
+## Overview
 
 Built with the MERN stack, this Quiz Application is a full-stack web application that allows users to create, take, and share quizzes, while competing in leaderboards. 
 
 🔗 [Live Demo](https://quizapp-dhav.onrender.com/)
-## ✨ Features
+## Features
 
 - **User Authentication**
 - **Custom Quiz Creation**
@@ -13,14 +13,14 @@ Built with the MERN stack, this Quiz Application is a full-stack web application
 - **User Profiles**
 - **Responsive Design**
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Frontend**: React, Tailwind CSS
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Deployment**: Render
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -68,7 +68,7 @@ Ensure both the backend and frontend servers are running. <br>
 Open your browser and visit localhost with the port vite gives you, for example: http://localhost:3000 to interact with the application.
 
 
-## 🤝 Contributing
+## Contributing
 Contributions are welcome! Please follow these steps:
 
 1. Fork the repository.
@@ -77,7 +77,7 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (git push origin feature-name).
 5. Open a pull request.
 
-## 📧 Contact
+## Contact
 For any inquiries, feel free to reach out:
 
 Email: [markbakosss@gmail.com](mailto:markbakosss@gmail.com) <br>
