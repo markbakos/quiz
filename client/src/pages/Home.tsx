@@ -1,40 +1,49 @@
+import type { FC } from "react"
 import { Link } from "react-router-dom"
-import { FC } from "react"
+import { motion } from "framer-motion"
 
 const Home: FC = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-purple-400 to-indigo-600 text-white">
-            <header className="py-8 px-4 md:px-8">
-                <h1 className="text-4xl md:text-5xl font-bold text-center">Quiz App</h1>
-            </header>
-            <main className="container mx-auto px-4 md:px-8 py-12">
-                <section className="max-w-2xl mx-auto bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8 text-center">
-                    <h2 className="text-3xl md:text-4xl font-semibold mb-6">
-                        Test Your Computer Science Knowledge
-                    </h2>
-                    <p className="text-xl mb-8">
-                        Challenge yourself with quizzes and see how you stack up!
-                    </p>
-                    <div className="space-y-6">
-                        <div>
-                            <h3 className="text-2xl font-medium mb-4">Ready to begin?</h3>
-                            <Link to="/register">
-                                <button className="w-full md:w-64 py-3 px-6 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75">
-                                    Register Now
-                                </button>
-                            </Link>
-                        </div>
-                        <div>
-                            <h3 className="text-2xl font-medium mb-4">Already have an account?</h3>
-                            <Link to="/login">
-                                <button className="w-full md:w-64 py-3 px-6 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75">
-                                    Login
-                                </button>
-                            </Link>
-                        </div>
+        <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col justify-center items-center p-4">
+            <motion.header
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-12"
+            >
+                <h1 className="text-4xl md:text-5xl font-bold text-center text-blue-600">Quiz App</h1>
+            </motion.header>
+            <motion.main
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="max-w-md w-full"
+            >
+                <section className="bg-white rounded-lg shadow-lg p-8 text-center border border-slate-200">
+                    <h2 className="text-2xl font-semibold mb-6 text-slate-700">Test Your Knowledge</h2>
+                    <p className="text-slate-600 mb-8">Challenge yourself with quizzes and see how you stack up!</p>
+                    <div className="space-y-4">
+                        <Link to="/register" className="block">
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 hover:bg-blue-700"
+                            >
+                                Register Now
+                            </motion.button>
+                        </Link>
+                        <Link to="/login" className="block">
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full py-2 px-4 bg-slate-100 text-slate-800 font-medium rounded-md transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-opacity-50 hover:bg-slate-200"
+                            >
+                                Login
+                            </motion.button>
+                        </Link>
                     </div>
                 </section>
-            </main>
+            </motion.main>
         </div>
     )
 }
