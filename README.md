@@ -1,4 +1,4 @@
-# Interactive Quiz Application
+# Quiz App
 
 ## Overview
 
